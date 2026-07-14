@@ -16,7 +16,22 @@ async function loadComponent(id, file) {
 
 await loadComponent("sidebar-container","../components/sidebar.html");
 await loadComponent("navbar-container","../components/navbar.html");
+/* -----------------------------
+   Mobile Sidebar
+------------------------------*/
 
+const menuToggle = document.getElementById("menuToggle");
+const sidebar = document.querySelector(".sidebar");
+
+if (menuToggle && sidebar) {
+
+    menuToggle.addEventListener("click", () => {
+
+        sidebar.classList.toggle("show");
+
+    });
+
+}
 /* -----------------------------
    Check Login
 ------------------------------*/
