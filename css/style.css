@@ -192,9 +192,9 @@ body{
 
     .sidebar.show{
 
-        left:0;
+    left:0 !important;
 
-    }
+}
 
     .main-content{
 
