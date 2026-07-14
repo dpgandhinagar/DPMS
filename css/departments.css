@@ -1,0 +1,94 @@
+/* ==========================
+   Department Management
+========================== */
+
+.page-title{
+    font-weight:700;
+}
+
+.table thead th{
+    font-weight:600;
+    white-space:nowrap;
+}
+
+.table tbody td{
+    vertical-align:middle;
+}
+
+.card{
+    border:none;
+    border-radius:14px;
+}
+
+.form-control,
+.form-select{
+    border-radius:10px;
+}
+
+.btn{
+    border-radius:10px;
+}
+
+.badge-active{
+    background:#198754;
+    color:#fff;
+    padding:6px 10px;
+    border-radius:999px;
+    font-size:.8rem;
+}
+
+.badge-inactive{
+    background:#dc3545;
+    color:#fff;
+    padding:6px 10px;
+    border-radius:999px;
+    font-size:.8rem;
+}
+
+.action-btn{
+    width:36px;
+    height:36px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:8px;
+    margin-right:4px;
+}
+
+.pagination .page-link{
+    border-radius:8px;
+    margin:0 2px;
+}
+
+.modal-content{
+    border:none;
+    border-radius:16px;
+}
+
+.modal-header{
+    border-bottom:1px solid #eef2f7;
+}
+
+.modal-footer{
+    border-top:1px solid #eef2f7;
+}
+
+#searchDepartment{
+    max-width:450px;
+}
+
+@media (max-width:768px){
+
+    .container-fluid{
+        padding:1rem !important;
+    }
+
+    .table{
+        font-size:.92rem;
+    }
+
+    #searchDepartment{
+        max-width:100%;
+    }
+
+}

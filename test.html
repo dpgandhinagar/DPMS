@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DPMS Connection Test</title>
+</head>
+<body>
+
+<h2>Testing Supabase Connection...</h2>
+
+<p id="result">Connecting...</p>
+
+<script type="module">
+
+import { supabase } from "./js/supabase.js";
+
+const { data, error } = await supabase.auth.getSession();
+
+if(error){
+
+    document.getElementById("result").innerHTML =
+        "❌ Connection Failed<br><br>" + error.message;
+
+}else{
+
+    document.getElementById("result").innerHTML =
+        "✅ Connected Successfully";
+
+}
+
+</script>
+
+</body>
+</html>

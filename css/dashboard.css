@@ -1,0 +1,290 @@
+/* ===========================
+   LAYOUT
+=========================== */
+
+.wrapper{
+    display:flex;
+    min-height:100vh;
+    background:#f4f6fb;
+}
+
+/* ===========================
+   SIDEBAR
+=========================== */
+
+.sidebar{
+
+    width:260px;
+
+    background:#183153;
+
+    color:#fff;
+
+    min-height:100vh;
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    overflow-y:auto;
+
+}
+
+.logo{
+
+    text-align:center;
+
+    padding:30px 20px;
+
+    border-bottom:1px solid rgba(255,255,255,.10);
+
+}
+
+.logo h3{
+
+    margin:0;
+
+    font-weight:700;
+
+}
+
+.logo small{
+
+    color:#d7dde8;
+
+}
+
+.sidebar ul{
+
+    list-style:none;
+
+    padding:20px 0;
+
+    margin:0;
+
+}
+
+.sidebar li{
+
+    margin:5px 15px;
+
+}
+
+.sidebar a{
+
+    display:block;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    transition:.25s;
+
+}
+
+.sidebar a:hover{
+
+    background:#28508a;
+
+}
+
+.sidebar i{
+
+    margin-right:10px;
+
+}
+
+/* ===========================
+   MAIN AREA
+=========================== */
+
+.main-content{
+
+    margin-left:260px;
+
+    width:calc(100% - 260px);
+
+}
+
+/* ===========================
+   NAVBAR
+=========================== */
+
+.top-navbar{
+
+    background:#fff;
+
+    height:70px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 30px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+}
+
+.navbar-right{
+
+    font-weight:600;
+
+}
+
+/* ===========================
+   DASHBOARD CARDS
+=========================== */
+
+.dashboard-card{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.dashboard-card small{
+
+    color:#777;
+
+    font-size:15px;
+
+}
+
+.dashboard-card h2{
+
+    margin-top:10px;
+
+    margin-bottom:0;
+
+    font-weight:700;
+
+}
+
+.dashboard-icon{
+
+    font-size:45px;
+
+    color:#0d6efd;
+
+}
+
+/* ===========================
+   CARDS
+=========================== */
+
+.card{
+
+    border:none;
+
+    border-radius:15px;
+
+}
+
+.card-header{
+
+    background:#fff;
+
+    font-weight:600;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:992px){
+
+.sidebar{
+
+    width:80px;
+
+}
+
+.logo h3,
+.logo small{
+
+    display:none;
+
+}
+
+.sidebar a{
+
+    text-align:center;
+
+    padding:15px;
+
+}
+
+.sidebar i{
+
+    margin:0;
+
+    font-size:20px;
+
+}
+
+.sidebar a{
+
+    font-size:0;
+
+}
+
+.sidebar i{
+
+    font-size:22px;
+
+}
+
+.main-content{
+
+    margin-left:80px;
+
+    width:calc(100% - 80px);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.top-navbar{
+
+    padding:15px;
+
+}
+
+.dashboard-card{
+
+    padding:20px;
+
+}
+
+}

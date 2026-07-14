@@ -1,0 +1,33 @@
+/* ==========================================================
+   WEEKLY PLANS
+========================================================== */
+
+.table th{
+    white-space: nowrap;
+}
+
+.table td{
+    vertical-align: middle;
+}
+
+.card{
+    border: none;
+    border-radius: 12px;
+}
+
+.modal-content{
+    border-radius: 12px;
+}
+
+.form-control,
+.form-select{
+    border-radius: 8px;
+}
+
+.btn{
+    border-radius: 8px;
+}
+
+.badge{
+    font-size: 0.85rem;
+}

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weekly Action Plans | DPMS</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/weekly-plans.css">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+    <div id="sidebar-container"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Navbar -->
+        <div id="navbar-container"></div>
+
+        <div class="container-fluid p-4">
+
+            <!-- Header -->
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+
+                    <h2 class="fw-bold mb-1">
+                        Weekly Action Plans
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        Create and monitor weekly departmental planning.
+                    </p>
+
+                </div>
+
+                <button
+                    class="btn btn-primary"
+                    id="btnNewPlan">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    New Weekly Plan
+
+                </button>
+
+            </div>
+
+            <!-- Filters -->
+
+            <div class="card mb-4">
+
+                <div class="card-body">
+
+                    <div class="row g-3">
+
+                        <div class="col-md-2">
+
+                            <label class="form-label">
+                                Week
+                            </label>
+
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="filterWeek">
+
+                        </div>
+
+                        <div class="col-md-2">
+
+                            <label class="form-label">
+                                Year
+                            </label>
+
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="filterYear">
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <label class="form-label">
+                                Search
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="txtSearch"
+                                placeholder="Search plan title...">
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <label class="form-label">
+                                Status
+                            </label>
+
+                            <select
+                                class="form-select"
+                                id="filterStatus">
+
+                                <option value="">All</option>
+                                <option>Draft</option>
+                                <option>Submitted</option>
+                                <option>Reviewed</option>
+                                <option>Returned</option>
+                                <option>Approved</option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Table -->
+
+            <div class="card">
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle mb-0">
+
+                        <thead class="table-light">
+
+                        <tr>
+
+                            <th>#</th>
+
+                            <th>Week</th>
+
+                            <th>Year</th>
+
+                            <th>Department</th>
+
+                            <th>Title</th>
+
+                            <th>Status</th>
+
+                            <th>Updated</th>
+
+                            <th width="180">
+                                Action
+                            </th>
+
+                        </tr>
+
+                        </thead>
+
+                        <tbody id="plansTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Weekly Plan Modal -->
+
+<div
+    class="modal fade"
+    id="planModal"
+    tabindex="-1">
+
+    <div class="modal-dialog modal-xl">
+
+        <div class="modal-content">
+
+            <form id="planForm">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+                        Weekly Action Plan
+                    </h5>
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <input
+                        type="hidden"
+                        id="planId">
+
+                    <div class="row">
+
+                        <div class="col-md-2 mb-3">
+
+                            <label class="form-label">
+                                Week
+                            </label>
+
+                            <input
+                                type="number"
+                                id="weekNo"
+                                class="form-control"
+                                required>
+
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+
+                            <label class="form-label">
+                                Year
+                            </label>
+
+                            <input
+                                type="number"
+                                id="year"
+                                class="form-control"
+                                required>
+
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+
+                            <label class="form-label">
+                                Department
+                            </label>
+
+                            <select
+                                id="department"
+                                class="form-select"
+                                required>
+
+                            </select>
+
+                        </div>
+
+                        <div class="col-md-4 mb-3">
+
+                            <label class="form-label">
+                                Status
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                value="Draft"
+                                readonly>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Plan Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="planTitle"
+                            class="form-control"
+                            required>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Objectives
+                        </label>
+
+                        <textarea
+                            id="objectives"
+                            class="form-control"
+                            rows="5"></textarea>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            DDO Remarks
+                        </label>
+
+                        <textarea
+                            id="ddoRemarks"
+                            class="form-control"
+                            rows="3"
+                            readonly></textarea>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-warning"
+                        id="btnSaveDraft">
+
+                        Save Draft
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-success">
+
+                        Submit Plan
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script type="module" src="../js/weekly-plans.js"></script>
+
+</body>
+
+</html>

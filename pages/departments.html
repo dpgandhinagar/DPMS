@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Departments | DPMS</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+
+    <link rel="stylesheet" href="../css/departments.css">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+
+    <div id="sidebar-container"></div>
+
+    <!-- Main -->
+
+    <div class="main-content">
+
+        <!-- Navbar -->
+
+        <div id="navbar-container"></div>
+
+        <div class="container-fluid p-4">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div>
+
+                    <h2 class="fw-bold">
+
+                        Department Management
+
+                    </h2>
+
+                    <p class="text-muted mb-0">
+
+                        Manage District Departments
+
+                    </p>
+
+                </div>
+
+                <button
+                        class="btn btn-primary"
+                        id="btnAddDepartment">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Add Department
+
+                </button>
+
+            </div>
+
+            <!-- Search -->
+
+            <div class="card mb-3">
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+
+                            <input
+                                    id="txtSearch"
+
+                                    class="form-control"
+
+                                    placeholder="Search Department">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Table -->
+
+            <div class="card">
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle mb-0">
+
+                        <thead>
+
+                        <tr>
+
+                            <th width="60">
+
+                                #
+
+                            </th>
+
+                            <th>
+
+                                Department
+
+                            </th>
+
+                            <th>
+
+                                Short
+
+                            </th>
+
+                            <th>
+
+                                HOD
+
+                            </th>
+
+                            <th>
+
+                                Email
+
+                            </th>
+
+                            <th>
+
+                                Mobile
+
+                            </th>
+
+                            <th>
+
+                                Status
+
+                            </th>
+
+                            <th width="130">
+
+                                Action
+
+                            </th>
+
+                        </tr>
+
+                        </thead>
+
+                        <tbody
+                                id="departmentTableBody">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Modal -->
+
+<div
+        class="modal fade"
+
+        id="departmentModal"
+
+        tabindex="-1">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <form
+                    id="departmentForm">
+
+                <div class="modal-header">
+
+                    <h5>
+
+                        Department
+
+                    </h5>
+
+                    <button
+
+                            class="btn-close"
+
+                            data-bs-dismiss="modal">
+
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <input
+                            type="hidden"
+
+                            id="departmentId">
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>
+
+                                Department Name
+
+                            </label>
+
+                            <input
+
+                                    id="departmentName"
+
+                                    class="form-control"
+
+                                    required>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>
+
+                                Short Name
+
+                            </label>
+
+                            <input
+
+                                    id="shortName"
+
+                                    class="form-control">
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>
+
+                                HOD Name
+
+                            </label>
+
+                            <input
+
+                                    id="hodName"
+
+                                    class="form-control">
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>
+
+                                Email
+
+                            </label>
+
+                            <input
+
+                                    id="hodEmail"
+
+                                    type="email"
+
+                                    class="form-control">
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>
+
+                                Mobile
+
+                            </label>
+
+                            <input
+
+                                    id="hodMobile"
+
+                                    class="form-control">
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+
+                            <label>
+
+                                Status
+
+                            </label>
+
+                            <select
+
+                                    id="isActive"
+
+                                    class="form-select">
+
+                                <option value="true">
+
+                                    Active
+
+                                </option>
+
+                                <option value="false">
+
+                                    Inactive
+
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button
+
+                            type="button"
+
+                            class="btn btn-secondary"
+
+                            data-bs-dismiss="modal">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+
+                            class="btn btn-primary">
+
+                        Save
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script type="module"
+        src="../js/departments.js"></script>
+
+</body>
+
+</html>
