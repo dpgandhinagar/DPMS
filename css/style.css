@@ -142,55 +142,80 @@ body{
    TABLET & MOBILE
 ========================== */
 
-@media (max-width:992px){
+/* ============================
+   TABLETS
+============================ */
 
-    .wrapper{
-
-        flex-direction:column;
-
-    }
+@media (max-width:991px){
 
     .sidebar{
 
-        width:100%;
+        transform:translateX(-100%);
+        transition:.3s;
 
-        min-height:auto;
+    }
+
+    .sidebar.show{
+
+        transform:translateX(0);
 
     }
 
     .main-content{
 
-        width:100%;
+        margin-left:0;
 
     }
 
 }
-
 /* Mobile */
 
-@media (max-width:576px){
+/* ======================================
+   MOBILE ONLY
+====================================== */
 
-    h2{
+@media (max-width:767px){
 
-        font-size:1.5rem;
+    .sidebar{
+
+        position:fixed;
+        top:0;
+        left:-260px;
+        width:260px;
+        height:100vh;
+        z-index:1055;
+        transition:left .3s ease;
+        overflow-y:auto;
+        box-shadow:0 0 20px rgba(0,0,0,.35);
 
     }
 
-    .dashboard-card{
+    .sidebar.show{
 
-        margin-bottom:15px;
-
-    }
-
-    .card{
-
-        margin-bottom:15px;
+        left:0;
 
     }
 
-    .table-responsive{
+    .main-content{
 
-        overflow-x:auto;
+        margin-left:0 !important;
+        width:100%;
+
+    }
+
+    .sidebar-overlay{
+
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,.45);
+        display:none;
+        z-index:1050;
+
+    }
+
+    .sidebar-overlay.show{
+
+        display:block;
 
     }
 
