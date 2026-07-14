@@ -1,11 +1,19 @@
-<nav class="top-navbar">
+<nav class="top-navbar d-flex justify-content-between align-items-center px-3 py-2">
 
-    <div>
+    <div class="d-flex align-items-center">
+
+        <!-- Mobile only -->
+
+        <button
+            class="btn btn-outline-primary me-2 d-md-none"
+            id="menuToggle">
+
+            <i class="bi bi-list fs-4"></i>
+
+        </button>
 
         <h4 class="mb-0">
-
             District Planning & Monitoring System
-
         </h4>
 
     </div>
@@ -13,9 +21,7 @@
     <div>
 
         <span id="loggedUser">
-
             Loading...
-
         </span>
 
     </div>
