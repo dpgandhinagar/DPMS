@@ -50,3 +50,148 @@ body{
     background:white;
 
 }
+
+/* ============================
+   APP LAYOUT
+============================ */
+
+.sidebar{
+
+    width:260px;
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    overflow-y:auto;
+    z-index:1030;
+}
+
+.main-content{
+
+    margin-left:260px;
+    padding:20px;
+    transition:.3s;
+
+}
+
+/* ============================
+   TABLETS
+============================ */
+
+@media (max-width:991px){
+
+    .sidebar{
+
+        transform:translateX(-100%);
+        transition:.3s;
+
+    }
+
+    .sidebar.show{
+
+        transform:translateX(0);
+
+    }
+
+    .main-content{
+
+        margin-left:0;
+
+    }
+
+}
+
+/* ============================
+   MOBILE
+============================ */
+
+/* ==========================
+   APP LAYOUT
+========================== */
+
+.wrapper{
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:260px;
+    background:#1d3557;
+    color:#fff;
+    flex-shrink:0;
+    overflow-y:auto;
+}
+
+.main-content{
+    flex:1;
+    min-width:0;
+    background:#f5f7fb;
+}
+
+.navbar{
+    background:#fff;
+    border-bottom:1px solid #dee2e6;
+    padding:12px 20px;
+}
+
+.container-fluid{
+    padding:20px;
+}
+
+/* ==========================
+   TABLET & MOBILE
+========================== */
+
+@media (max-width:992px){
+
+    .wrapper{
+
+        flex-direction:column;
+
+    }
+
+    .sidebar{
+
+        width:100%;
+
+        min-height:auto;
+
+    }
+
+    .main-content{
+
+        width:100%;
+
+    }
+
+}
+
+/* Mobile */
+
+@media (max-width:576px){
+
+    h2{
+
+        font-size:1.5rem;
+
+    }
+
+    .dashboard-card{
+
+        margin-bottom:15px;
+
+    }
+
+    .card{
+
+        margin-bottom:15px;
+
+    }
+
+    .table-responsive{
+
+        overflow-x:auto;
+
+    }
+
+}
