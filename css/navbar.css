@@ -1,0 +1,217 @@
+/* ==========================================================
+   DPMS Navbar
+========================================================== */
+
+.top-navbar{
+
+    height:72px;
+
+    background:#FFFFFF;
+
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 28px;
+
+    box-shadow:var(--shadow-sm);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+}
+
+/* Left */
+
+.navbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.navbar-logo{
+
+    width:42px;
+
+    height:42px;
+
+    object-fit:contain;
+
+}
+
+.navbar-title{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.navbar-title h4{
+
+    margin:0;
+
+    font-size:1.15rem;
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+.navbar-title span{
+
+    color:var(--text-light);
+
+    font-size:.78rem;
+
+}
+
+/* Right */
+
+.navbar-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.user-chip{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:#F8FAFC;
+
+    padding:8px 16px;
+
+    border-radius:40px;
+
+    border:1px solid var(--border);
+
+}
+
+.user-avatar{
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:18px;
+
+    font-weight:700;
+
+}
+
+.user-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.user-name{
+
+    font-size:.90rem;
+
+    font-weight:600;
+
+    color:var(--text);
+
+}
+
+.user-role{
+
+    font-size:.75rem;
+
+    color:var(--text-light);
+
+}
+
+/* Notification */
+
+.notification{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#F8FAFC;
+
+    border:1px solid var(--border);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.notification:hover{
+
+    background:#EEF4FF;
+
+    color:var(--primary);
+
+}
+
+/* Mobile */
+
+@media(max-width:767px){
+
+    .top-navbar{
+
+        padding:0 16px;
+
+    }
+
+    .navbar-title span{
+
+        display:none;
+
+    }
+
+    .user-info{
+
+        display:none;
+
+    }
+
+}

@@ -1,0 +1,146 @@
+/* ======================================================
+   DPMS Design System
+   District Planning & Monitoring System
+====================================================== */
+
+:root{
+
+    /* Brand */
+
+    --primary:#2563EB;
+    --primary-dark:#16324F;
+    --primary-hover:#1E4A72;
+
+    /* Status */
+
+    --success:#16A34A;
+    --warning:#F59E0B;
+    --danger:#DC2626;
+
+    /* Background */
+
+    --bg:#F4F7FA;
+    --surface:#FFFFFF;
+
+    /* Text */
+
+    --text:#1F2937;
+    --text-light:#6B7280;
+
+    /* Borders */
+
+    --border:#E5E7EB;
+
+    /* Radius */
+
+    --radius:14px;
+
+    /* Shadow */
+
+    --shadow-sm:
+        0 2px 8px rgba(15,23,42,.05);
+
+    --shadow:
+
+        0 6px 20px rgba(15,23,42,.08);
+
+    --shadow-lg:
+
+        0 14px 35px rgba(15,23,42,.12);
+
+    /* Transition */
+
+    --transition:.25s ease;
+
+}
+
+/* --------------------------
+   Global
+--------------------------- */
+
+*{
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    margin:0;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-family:
+
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    font-size:15px;
+
+    line-height:1.5;
+
+}
+
+/* --------------------------
+   Headings
+--------------------------- */
+
+h1,h2,h3,h4,h5{
+
+    color:var(--text);
+
+    font-weight:600;
+
+}
+
+p{
+
+    color:var(--text-light);
+
+}
+
+/* --------------------------
+   Links
+--------------------------- */
+
+a{
+
+    text-decoration:none;
+
+    transition:var(--transition);
+
+}
+
+/* --------------------------
+   Scrollbar
+--------------------------- */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#CBD5E1;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#94A3B8;
+
+}

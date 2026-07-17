@@ -1,290 +1,273 @@
-/* ===========================
-   LAYOUT
-=========================== */
-
-.wrapper{
-    display:flex;
-    min-height:100vh;
-    background:#f4f6fb;
-}
-
-/* ===========================
-   SIDEBAR
-=========================== */
-
-.sidebar{
-
-    width:260px;
-
-    background:#183153;
-
-    color:#fff;
-
-    min-height:100vh;
-
-    position:fixed;
-
-    left:0;
-
-    top:0;
-
-    overflow-y:auto;
-
-}
-
-.logo{
-
-    text-align:center;
-
-    padding:30px 20px;
-
-    border-bottom:1px solid rgba(255,255,255,.10);
-
-}
-
-.logo h3{
-
-    margin:0;
-
-    font-weight:700;
-
-}
-
-.logo small{
-
-    color:#d7dde8;
-
-}
-
-.sidebar ul{
-
-    list-style:none;
-
-    padding:20px 0;
-
-    margin:0;
-
-}
-
-.sidebar li{
-
-    margin:5px 15px;
-
-}
-
-.sidebar a{
-
-    display:block;
-
-    color:#fff;
-
-    text-decoration:none;
-
-    padding:12px 18px;
-
-    border-radius:10px;
-
-    transition:.25s;
-
-}
-
-.sidebar a:hover{
-
-    background:#28508a;
-
-}
-
-.sidebar i{
-
-    margin-right:10px;
-
-}
-
-/* ===========================
-   MAIN AREA
-=========================== */
-
-.main-content{
-
-    margin-left:260px;
-
-    width:calc(100% - 260px);
-
-}
-
-/* ===========================
-   NAVBAR
-=========================== */
-
-.top-navbar{
-
-    background:#fff;
-
-    height:70px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:0 30px;
-
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
-
-}
-
-.navbar-right{
-
-    font-weight:600;
-
-}
-
-/* ===========================
-   DASHBOARD CARDS
-=========================== */
+/* ==========================================================
+   DPMS Dashboard
+========================================================== */
+
+/* Dashboard Cards */
 
 .dashboard-card{
 
+    border:none;
+
+    border-radius:16px;
+
     background:#fff;
 
-    border-radius:15px;
+    box-shadow:var(--shadow);
 
-    padding:25px;
+    transition:all .25s ease;
 
-    display:flex;
+    overflow:hidden;
 
-    justify-content:space-between;
-
-    align-items:center;
-
-    box-shadow:0 4px 15px rgba(0,0,0,.08);
-
-    transition:.3s;
+    position:relative;
 
 }
 
 .dashboard-card:hover{
 
-    transform:translateY(-4px);
+    transform:translateY(-5px);
+
+    box-shadow:var(--shadow-lg);
 
 }
 
-.dashboard-card small{
+.district-logo{
+    width:55px;
+    height:55px;
+    object-fit:contain;
+    border-radius:50%;
+}
 
-    color:#777;
+/* Top Accent */
 
-    font-size:15px;
+.dashboard-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:5px;
+
+    background:var(--primary);
 
 }
 
-.dashboard-card h2{
+/* Card Body */
 
-    margin-top:10px;
+.dashboard-card .card-body{
 
-    margin-bottom:0;
-
-    font-weight:700;
+    padding:22px;
 
 }
+
+/* Card Header */
+
+.dashboard-card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+/* Icon */
 
 .dashboard-icon{
 
-    font-size:45px;
+    width:52px;
 
-    color:#0d6efd;
+    height:52px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:22px;
+
+    color:white;
 
 }
 
-/* ===========================
-   CARDS
-=========================== */
+/* Different Colors */
 
-.card{
+.icon-blue{
 
-    border:none;
-
-    border-radius:15px;
+    background:#2563EB;
 
 }
 
-.card-header{
+.icon-green{
 
-    background:#fff;
+    background:#16A34A;
+
+}
+
+.icon-orange{
+
+    background:#F59E0B;
+
+}
+
+.icon-red{
+
+    background:#DC2626;
+
+}
+
+.icon-purple{
+
+    background:#7C3AED;
+
+}
+
+.icon-cyan{
+
+    background:#0891B2;
+
+}
+
+/* Small Heading */
+
+.dashboard-label{
+
+    color:var(--text-light);
+
+    font-size:.82rem;
+
+    font-weight:600;
+
+    text-transform:uppercase;
+
+    letter-spacing:.5px;
+
+}
+
+/* Main Number */
+
+.dashboard-number{
+
+    font-size:2.2rem;
+
+    font-weight:700;
+
+    color:var(--text);
+
+    margin:8px 0;
+
+}
+
+/* Footer */
+
+.dashboard-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:15px;
+
+    color:var(--text-light);
+
+    font-size:.85rem;
+
+}
+
+/* Positive */
+
+.text-success{
+
+    color:var(--success)!important;
+
+}
+
+/* Warning */
+
+.text-warning{
+
+    color:var(--warning)!important;
+
+}
+
+/* Danger */
+
+.text-danger{
+
+    color:var(--danger)!important;
+}
+
+/* Section Title */
+
+.dashboard-section{
+
+    font-size:1.2rem;
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+    color:var(--text);
+
+}
+
+/* Dashboard Panels */
+
+.dashboard-panel{
+
+    background:white;
+
+    border-radius:16px;
+
+    box-shadow:var(--shadow);
+
+    padding:24px;
+
+    margin-bottom:24px;
+
+}
+
+/* Panel Header */
+
+.dashboard-panel-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+    border-bottom:1px solid var(--border);
+
+    padding-bottom:12px;
+
+}
+
+.dashboard-panel-header h5{
+
+    margin:0;
 
     font-weight:600;
 
 }
 
-/* ===========================
-   RESPONSIVE
-=========================== */
+/* Dashboard Buttons */
 
-@media(max-width:992px){
+.dashboard-panel .btn{
 
-.sidebar{
-
-    width:80px;
-
-}
-
-.logo h3,
-.logo small{
-
-    display:none;
-
-}
-
-.sidebar a{
-
-    text-align:center;
-
-    padding:15px;
-
-}
-
-.sidebar i{
-
-    margin:0;
-
-    font-size:20px;
-
-}
-
-.sidebar a{
-
-    font-size:0;
-
-}
-
-.sidebar i{
-
-    font-size:22px;
-
-}
-
-.main-content{
-
-    margin-left:80px;
-
-    width:calc(100% - 80px);
-
-}
-
-}
-
-@media(max-width:768px){
-
-.top-navbar{
-
-    padding:15px;
-
-}
-
-.dashboard-card{
-
-    padding:20px;
-
-}
+    border-radius:10px;
 
 }

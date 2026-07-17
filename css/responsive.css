@@ -1,0 +1,129 @@
+/* ==========================================================
+   DPMS Responsive
+   Mobile Only
+========================================================== */
+
+@media (max-width:767px){
+
+    /* Main Layout */
+
+    .main-content{
+
+        margin-left:0;
+
+        width:100%;
+
+    }
+
+    /* Sidebar */
+
+    .sidebar{
+
+        left:-270px;
+
+        transition:left .30s ease;
+
+    }
+
+    .sidebar.show{
+
+        left:0;
+
+    }
+
+    /* Navbar */
+
+    .top-navbar{
+
+        padding:0 15px;
+
+        height:65px;
+
+    }
+
+    .navbar-title h4{
+
+        font-size:1rem;
+
+    }
+
+    .navbar-title span{
+
+        display:none;
+
+    }
+
+    .user-info{
+
+        display:none;
+
+    }
+
+    /* Page */
+
+    .page-content{
+
+        padding:15px;
+
+    }
+
+    /* Cards */
+
+    .dashboard-card{
+
+        margin-bottom:18px;
+
+    }
+
+    .dashboard-number{
+
+        font-size:1.8rem;
+
+    }
+
+    .dashboard-icon{
+
+        width:45px;
+
+        height:45px;
+
+        font-size:20px;
+
+    }
+
+    /* Tables */
+
+    .table{
+
+        font-size:.90rem;
+
+    }
+
+    .table td,
+    .table th{
+
+        white-space:nowrap;
+
+    }
+
+    /* Forms */
+
+    .form-card{
+
+        padding:18px;
+
+    }
+
+    .form-actions{
+
+        flex-direction:column;
+
+    }
+
+    .form-actions .btn{
+
+        width:100%;
+
+    }
+
+}

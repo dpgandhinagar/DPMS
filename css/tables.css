@@ -1,0 +1,153 @@
+/* ==========================================================
+   DPMS Tables
+========================================================== */
+
+.table-container{
+
+    background:#fff;
+
+    border-radius:16px;
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+    margin-bottom:24px;
+
+}
+
+.table{
+
+    margin-bottom:0;
+
+    vertical-align:middle;
+
+}
+
+/* Header */
+
+.table thead{
+
+    background:#F8FAFC;
+
+}
+
+.table thead th{
+
+    color:var(--text);
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+    text-transform:uppercase;
+
+    letter-spacing:.4px;
+
+    border-bottom:2px solid var(--border);
+
+    padding:16px;
+
+}
+
+/* Body */
+
+.table tbody td{
+
+    padding:16px;
+
+    border-color:#EEF2F7;
+
+    color:var(--text);
+
+}
+
+/* Zebra */
+
+.table tbody tr:nth-child(even){
+
+    background:#FCFDFE;
+
+}
+
+/* Hover */
+
+.table tbody tr{
+
+    transition:.2s;
+
+}
+
+.table tbody tr:hover{
+
+    background:#F3F8FF;
+
+}
+
+/* Badges */
+
+.status-badge{
+
+    display:inline-block;
+
+    padding:6px 12px;
+
+    border-radius:30px;
+
+    font-size:.75rem;
+
+    font-weight:600;
+
+}
+
+.badge-success{
+
+    background:#DCFCE7;
+
+    color:#166534;
+
+}
+
+.badge-warning{
+
+    background:#FEF3C7;
+
+    color:#92400E;
+
+}
+
+.badge-danger{
+
+    background:#FEE2E2;
+
+    color:#991B1B;
+
+}
+
+.badge-info{
+
+    background:#DBEAFE;
+
+    color:#1D4ED8;
+
+}
+
+/* Action Buttons */
+
+.table .btn{
+
+    margin-right:6px;
+
+    border-radius:8px;
+
+}
+
+/* Responsive */
+
+.table-responsive{
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+}

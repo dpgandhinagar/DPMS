@@ -1,0 +1,133 @@
+/* ======================================================
+   DPMS Layout
+====================================================== */
+
+/* Wrapper */
+
+.wrapper{
+
+    display:flex;
+
+    min-height:100vh;
+
+}
+
+/* Sidebar */
+
+.sidebar{
+
+    width:270px;
+
+    background:var(--primary-dark);
+
+    color:white;
+
+    flex-shrink:0;
+
+    overflow-y:auto;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    bottom:0;
+
+    box-shadow:var(--shadow);
+
+    transition:var(--transition);
+
+    z-index:1040;
+
+}
+
+/* Main Content */
+
+.main-content{
+
+    flex:1;
+
+    margin-left:270px;
+
+    min-height:100vh;
+
+    background:var(--bg);
+
+}
+
+/* Navbar Area */
+
+.top-navbar{
+
+    background:white;
+
+    min-height:70px;
+
+    padding:16px 28px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border-bottom:1px solid var(--border);
+
+    box-shadow:var(--shadow-sm);
+
+}
+
+/* Page Content */
+
+.page-content{
+
+    padding:28px;
+
+}
+
+/* Page Title */
+
+.page-title{
+
+    font-size:1.6rem;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+
+}
+
+/* Section Card */
+
+.page-card{
+
+    background:white;
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    padding:22px;
+
+    margin-bottom:24px;
+
+}
+
+/* Generic Toolbar */
+
+.page-toolbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:20px;
+
+    flex-wrap:wrap;
+
+}
