@@ -1,113 +1,89 @@
 <div class="sidebar">
 
-    <div class="logo">
+    <!-- Header -->
+    <div class="sidebar-header">
 
-        <h3>DPMS</h3>
+        <!-- Official District Panchayat Logo -->
+        <img src="../assets/images/district-logo.png"
+     class="district-logo"
+     alt="District Panchayat">
+        <!-- DPMS Logo -->
+        <img src="../assets/images/dpms-logo.png"
+             alt="DPMS"
+             style="width:48px;height:48px;margin-top:8px;margin-bottom:10px;">
 
-        <small>District Planning & Monitoring System</small>
+        <div class="sidebar-title">
+            DPMS
+        </div>
+
+        <div class="sidebar-subtitle">
+            District Planning & Monitoring System
+            <br>
+            District Panchayat Gandhinagar
+        </div>
 
     </div>
 
-    <ul class="list-unstyled mt-4">
+    <!-- Logged in User -->
+    <div class="sidebar-user">
 
-        <li class="mb-2">
+        <div class="sidebar-user-name" id="sidebarUserName">
 
-            <a href="dashboard.html" class="sidebar-link">
+            Loading...
 
-                <i class="bi bi-speedometer2"></i>
+        </div>
 
-                Dashboard
+        <div class="sidebar-user-role" id="sidebarUserRole">
 
-            </a>
+        </div>
 
-        </li>
+    </div>
 
-        <li class="mb-2">
+    <!-- Menu -->
+    <div class="sidebar-menu">
 
-            <a href="departments.html" class="sidebar-link">
+        <a href="dashboard.html">
+            <i class="bi bi-speedometer2"></i>
+            Dashboard
+        </a>
 
-                <i class="bi bi-building"></i>
+        <a href="departments.html">
+            <i class="bi bi-building"></i>
+            Departments
+        </a>
 
-                Departments
+        <a href="users.html">
+            <i class="bi bi-people"></i>
+            Users
+        </a>
 
-            </a>
+        <a href="weekly-plans.html">
+            <i class="bi bi-calendar-week"></i>
+            Weekly Plans
+        </a>
 
-        </li>
+        <a href="action-items.html">
+            <i class="bi bi-list-check"></i>
+            Action Items
+        </a>
 
-        <li class="mb-2">
+        <a href="progress-updates.html">
+            <i class="bi bi-graph-up-arrow"></i>
+            Progress Updates
+        </a>
 
-            <a href="users.html" class="sidebar-link">
+        <a href="reports.html">
+            <i class="bi bi-bar-chart"></i>
+            Reports
+        </a>
 
-                <i class="bi bi-people"></i>
+        <div class="sidebar-divider"></div>
 
-                Users
+        <a href="#" id="logoutBtn" class="logout">
+            <i class="bi bi-box-arrow-right"></i>
+            Logout
+        </a>
 
-            </a>
-
-        </li>
-
-        <li class="mb-2">
-
-            <a href="weekly-plans.html" class="sidebar-link">
-
-                <i class="bi bi-calendar-week"></i>
-
-                Weekly Plans
-
-            </a>
-
-        </li>
-
-        <li class="mb-2">
-
-            <a href="action-items.html" class="sidebar-link">
-
-                <i class="bi bi-list-check"></i>
-
-                Action Items
-
-            </a>
-
-        </li>
-
-        <li class="mb-2">
-
-            <a href="reports.html" class="sidebar-link">
-
-                <i class="bi bi-bar-chart"></i>
-
-                Reports
-
-            </a>
-
-        </li>
-
-        <li class="mb-2">
-
-            <a href="settings.html" class="sidebar-link">
-
-                <i class="bi bi-gear"></i>
-
-                Settings
-
-            </a>
-
-        </li>
-
-        <hr>
-
-        <li>
-
-            <a href="#" id="logoutBtn" class="sidebar-link">
-
-                <i class="bi bi-box-arrow-right"></i>
-
-                Logout
-
-            </a>
-
-        </li>
-
-    </ul>
+    </div>
 
 </div>

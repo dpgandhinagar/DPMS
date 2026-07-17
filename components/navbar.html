@@ -1,28 +1,87 @@
-<nav class="top-navbar d-flex justify-content-between align-items-center px-3 py-2">
+<nav class="top-navbar">
 
-    <div class="d-flex align-items-center">
+    <!-- Left -->
 
-        <!-- Mobile only -->
+    <div class="navbar-left">
+
+        <!-- Mobile Menu -->
 
         <button
-            class="btn btn-outline-primary me-2 d-md-none"
+            class="btn btn-outline-primary d-md-none"
             id="menuToggle">
 
-            <i class="bi bi-list fs-4"></i>
+            <i class="bi bi-list"></i>
 
         </button>
 
-        <h4 class="mb-0">
-            District Planning & Monitoring System
-        </h4>
+        <!-- DPMS Logo -->
+
+        <img
+            src="../assets/images/dpms-logo.png"
+            class="navbar-logo"
+            alt="DPMS">
+
+        <div class="navbar-title">
+
+            <h4>
+
+                District Planning & Monitoring System
+
+            </h4>
+
+            <span>
+
+                District Panchayat Gandhinagar
+
+            </span>
+
+        </div>
 
     </div>
 
-    <div>
+    <!-- Right -->
 
-        <span id="loggedUser">
-            Loading...
-        </span>
+    <div class="navbar-right">
+
+        <!-- Notification -->
+
+        <div class="notification">
+
+            <i class="bi bi-bell"></i>
+
+        </div>
+
+        <!-- User -->
+
+        <div class="user-chip">
+
+            <div
+                class="user-avatar"
+                id="userAvatar">
+
+                HS
+
+            </div>
+
+            <div class="user-info">
+
+                <div
+                    class="user-name"
+                    id="loggedUser">
+
+                    Loading...
+
+                </div>
+
+                <div
+                    class="user-role"
+                    id="loggedRole">
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
