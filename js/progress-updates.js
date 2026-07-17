@@ -15,6 +15,8 @@ import {
 
 } from "./auth.js";
 
+import { logActivity } from "./activity.js";
+
 /* ==========================================================
    GLOBAL VARIABLES
 ========================================================== */
@@ -357,22 +359,29 @@ async function saveProgress(e) {
 
     if (id === "") {
 
-        result = await supabase
+       result = await supabase
 
-            .from("progress_updates")
+    .from("progress_updates")
 
-            .insert(payload);
+    .insert(payload)
+
+    .select()
+
+    .single();
 
     } else {
 
-        result = await supabase
+       result = await supabase
 
-            .from("progress_updates")
+    .from("progress_updates")
 
-            .update(payload)
+    .update(payload)
 
-            .eq("id", id);
+    .eq("id", id)
 
+    .select()
+
+    .single();
     }
 
     if (result.error) {
@@ -382,7 +391,57 @@ async function saveProgress(e) {
         return;
 
     }
+if (id === "") {
 
+    await logActivity({
+
+        activityType: "PROGRESS_UPDATE",
+
+        description:
+            `${currentUser.full_name} updated progress of '${actionItem.activity_title}' to ${progressValue}%`,
+
+        referenceTable: "progress_updates",
+
+        referenceId: result.data.id,
+
+        profile: currentUser,
+
+        metadata: {
+
+            progress: progressValue,
+
+            remarks: remarks
+
+        }
+
+    });
+
+} else {
+
+    await logActivity({
+
+        activityType: "PROGRESS_UPDATE",
+
+        description:
+            `${currentUser.full_name} modified progress of '${actionItem.activity_title}' to ${progressValue}%`,
+
+        referenceTable: "progress_updates",
+
+        referenceId: id,
+
+        profile: currentUser,
+
+        metadata: {
+
+            progress: progressValue,
+
+            remarks: remarks
+
+        }
+
+    });
+
+}
     /* ---------------------------------------
        UPDATE ACTION ITEM
     --------------------------------------- */
@@ -415,6 +474,30 @@ if (progressValue >= 100)
         return;
 
     }
+    if (status === "Completed") {
+
+    await logActivity({
+
+        activityType: "ACTION_COMPLETED",
+
+        description:
+            `${currentUser.full_name} completed '${actionItem.activity_title}'`,
+
+        referenceTable: "action_items",
+
+        referenceId: actionId,
+
+        profile: currentUser,
+
+        metadata: {
+
+            progress: progressValue
+
+        }
+
+    });
+
+}
 
     progressModal.hide();
 

@@ -1,84 +1,112 @@
 import { supabase } from "./supabase.js";
 import { logout } from "./auth.js";
+import { initializeLayout } from "./layout.js";
 
-/* -----------------------------
-   Load HTML Components
-------------------------------*/
 
-async function loadComponent(id, file) {
 
-    const response = await fetch(file);
-    const html = await response.text();
 
-    document.getElementById(id).innerHTML = html;
 
+import {
+    getExecutiveAlerts,
+    getDepartmentPerformance
+} from "./services/dashboardService.js";
+
+
+async function loadExecutiveAlerts() {
+
+    const data = await getExecutiveAlerts();
+
+    const container = document.getElementById("executiveAlerts");
+
+    const alerts = [];
+
+    if (data.pending_approvals > 0)
+        alerts.push(`🔴 ${data.pending_approvals} Weekly Plans awaiting approval`);
+
+    if (data.returned_plans > 0)
+        alerts.push(`🟠 ${data.returned_plans} Returned Weekly Plans`);
+
+    if (data.delayed_actions > 0)
+        alerts.push(`🔴 ${data.delayed_actions} Delayed Action Items`);
+
+    if (data.active_actions > 0)
+        alerts.push(`🟡 ${data.active_actions} Action Items in Progress`);
+
+    if (alerts.length === 0) {
+
+        container.innerHTML = `
+            <div class="alert alert-success mb-0">
+                ✅ No pending executive alerts.
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML = alerts
+        .map(a => `<div class="alert alert-warning py-2 mb-2">${a}</div>`)
+        .join("");
 }
 
-await loadComponent("sidebar-container","../components/sidebar.html");
-await loadComponent("navbar-container","../components/navbar.html");
-/* -----------------------------
-   Mobile Sidebar
-------------------------------*/
+async function loadDepartmentPerformance() {
 
-const menuToggle = document.getElementById("menuToggle");
-const sidebar = document.querySelector(".sidebar");
+    const rows = await getDepartmentPerformance();
 
-if (menuToggle && sidebar) {
+    const container = document.getElementById("departmentPerformance");
 
-    menuToggle.addEventListener("click", () => {
+    container.innerHTML = "";
 
-        sidebar.classList.toggle("show");
+    rows.forEach(row => {
+
+        container.insertAdjacentHTML("beforeend", `
+
+            <div class="mb-3">
+
+                <div class="d-flex justify-content-between">
+
+                    <strong>${row.department_name}</strong>
+
+                    <strong>${row.completion_percent}%</strong>
+
+                </div>
+
+                <div class="progress">
+
+                    <div class="progress-bar"
+
+                        style="width:${row.completion_percent}%">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `);
 
     });
 
 }
-/* -----------------------------
-   Check Login
-------------------------------*/
 
-const {
 
-    data:{user}
 
-} = await supabase.auth.getUser();
 
-if(!user){
 
-    window.location="login.html";
+/* =====================================================
+   Initialize
+===================================================== */
 
-}
+const profile = await initializeLayout();
 
-/* -----------------------------
-   Load Logged User
-------------------------------*/
+if (!profile) {
 
-const {
-
-    data:profile
-
-} = await supabase
-
-.from("profiles")
-
-.select("*")
-
-.eq("id",user.id)
-
-.single();
-
-if(profile){
-
-    document.getElementById("loggedUser").innerHTML=
-
-    `<i class="bi bi-person-circle"></i>
-
-    ${profile.full_name}`;
+    window.location = "login.html";
 
 }
 
-/* -----------------------------
-   Dashboard Cards
-------------------------------*/
+/* =====================================================
+   Dashboard Counts
+===================================================== */
 
 async function loadCounts() {
 
@@ -159,11 +187,10 @@ async function loadCounts() {
 
     if (progressData && progressData.length > 0) {
 
-        avg =
-            progressData.reduce(
-                (sum, row) => sum + (row.progress || 0),
-                0
-            ) / progressData.length;
+        avg = progressData.reduce(
+            (sum, row) => sum + (row.progress || 0),
+            0
+        ) / progressData.length;
 
     }
 
@@ -171,21 +198,181 @@ async function loadCounts() {
         Math.round(avg) + "%";
 
 }
+/* =====================================================
+   District Activity Feed
+===================================================== */
 
-loadCounts();
+async function loadActivityFeed() {
 
-/* -----------------------------
+    const { data, error } = await supabase
+
+        .from("activity_log")
+
+        .select(`
+            *,
+            profiles!activity_log_user_id_fkey(
+                full_name
+            ),
+            departments!activity_log_department_id_fkey(
+                department_name
+            )
+        `)
+
+        .order("created_at", {
+
+            ascending: false
+
+        })
+
+        .limit(10);
+
+    if (error) {
+
+        console.error(error);
+
+        return;
+
+    }
+
+    const container =
+        document.getElementById("activityFeed");
+
+    container.innerHTML = "";
+
+    if (!data.length) {
+
+        container.innerHTML =
+
+            `<p class="text-muted">
+
+                No recent activity.
+
+            </p>`;
+
+        return;
+
+    }
+
+    data.forEach(item => {
+
+        let icon = "bi-clock-history";
+        let color = "secondary";
+
+        switch (item.activity_type) {
+
+            case "WEEKLY_PLAN":
+                icon = "bi-calendar-check";
+                color = "primary";
+                break;
+
+            case "ACTION_ITEM":
+            case "ACTION_ITEM_CREATED":
+                icon = "bi-list-check";
+                color = "warning";
+                break;
+
+            case "ACTION_ITEM_UPDATED":
+                icon = "bi-pencil-square";
+                color = "info";
+                break;
+
+            case "PROGRESS_UPDATE":
+                icon = "bi-graph-up-arrow";
+                color = "success";
+                break;
+
+            case "ACTION_COMPLETED":
+                icon = "bi-check-circle-fill";
+                color = "success";
+                break;
+
+            case "APPROVAL":
+                icon = "bi-patch-check-fill";
+                color = "primary";
+                break;
+
+            case "REJECTION":
+                icon = "bi-x-circle-fill";
+                color = "danger";
+                break;
+
+        }
+
+        container.insertAdjacentHTML(
+
+            "beforeend",
+
+            `
+            <div class="d-flex mb-3">
+
+                <div class="me-3">
+
+                    <i class="bi ${icon} text-${color} fs-4"></i>
+
+                </div>
+
+                <div class="flex-grow-1">
+
+                    <div class="fw-semibold">
+
+                        ${item.description}
+
+                    </div>
+
+                    <small class="text-muted">
+
+                        ${item.departments?.department_name ?? ""}
+
+                        ·
+
+                        ${item.profiles?.full_name ?? ""}
+
+                        ·
+
+                        ${new Date(item.created_at).toLocaleString()}
+
+                    </small>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            `
+
+        );
+
+    });
+
+}
+/* =====================================================
    Logout
-------------------------------*/
+===================================================== */
 
-document
+const logoutBtn = document.getElementById("logoutBtn");
 
-.getElementById("logoutBtn")
+if (logoutBtn) {
 
-.addEventListener("click",async(e)=>{
+    logoutBtn.addEventListener("click", async (e) => {
 
-    e.preventDefault();
+        e.preventDefault();
 
-    await logout();
+        await logout();
 
-});
+    });
+
+}
+
+/* =====================================================
+   Start
+===================================================== */
+
+await loadCounts();
+
+await loadActivityFeed();
+
+
+await loadExecutiveAlerts();
+
+await loadDepartmentPerformance();

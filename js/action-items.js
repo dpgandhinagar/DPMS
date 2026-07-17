@@ -9,7 +9,7 @@ import {
     logout,
     getCurrentProfile
 } from "./auth.js";
-
+import { logActivity } from "./activity.js";
 /* ==========================================================
    GLOBAL VARIABLES
 ========================================================== */
@@ -485,16 +485,19 @@ async function saveItem(e) {
 
     if (id === "") {
 
-        result = await supabase
-            .from("action_items")
-            .insert(payload);
-
+       result = await supabase
+    .from("action_items")
+    .insert(payload)
+    .select()
+    .single();
     } else {
 
-        result = await supabase
-            .from("action_items")
-            .update(payload)
-            .eq("id", id);
+       result = await supabase
+    .from("action_items")
+    .update(payload)
+    .eq("id", id)
+    .select()
+    .single();
 
     }
 
@@ -505,6 +508,92 @@ async function saveItem(e) {
         return;
 
     }
+    if (id === "") {
+
+    // New Action Item
+
+    await logActivity({
+
+        activityType: "ACTION_ITEM",
+
+        description:
+            `${currentUser.full_name} created Action Item '${payload.activity_title}'`,
+
+        referenceTable: "action_items",
+
+        referenceId: result.data.id,
+
+        profile: currentUser,
+
+        metadata: {
+
+            weekly_plan_id: planId,
+
+            priority: payload.priority,
+
+            status: payload.status
+
+        }
+
+    });
+
+} else {
+
+    // Existing Action Item Updated
+
+    await logActivity({
+
+        activityType: "ACTION_ITEM_UPDATED",
+
+        description:
+            `${currentUser.full_name} updated Action Item '${payload.activity_title}'`,
+
+        referenceTable: "action_items",
+
+        referenceId: id,
+
+        profile: currentUser,
+
+        metadata: {
+
+            progress: payload.progress,
+
+            status: payload.status,
+
+            priority: payload.priority
+
+        }
+
+    });
+
+    // Log completion separately
+
+    if (payload.status === "Completed") {
+
+        await logActivity({
+
+            activityType: "ACTION_COMPLETED",
+
+            description:
+                `${currentUser.full_name} completed Action Item '${payload.activity_title}'`,
+
+            referenceTable: "action_items",
+
+            referenceId: id,
+
+            profile: currentUser,
+
+            metadata: {
+
+                progress: payload.progress
+
+            }
+
+        });
+
+    }
+
+}
 
     itemModal.hide();
 

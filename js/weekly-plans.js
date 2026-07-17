@@ -3,6 +3,10 @@ import {
     logout,
     getCurrentProfile
 } from "./auth.js";
+
+import {
+    logActivity
+} from "./activity.js";
 /* ==========================================================
    GLOBAL VARIABLES
 ========================================================== */
@@ -447,11 +451,21 @@ async function saveDraft(){
 
     };
 
-    const {error}=await supabase
+    const {
 
-        .from("weekly_plans")
+    data:newPlan,
 
-        .insert(payload);
+    error
+
+}=await supabase
+
+.from("weekly_plans")
+
+.insert(payload)
+
+.select()
+
+.single();
 
     if(error){
 
@@ -460,6 +474,32 @@ async function saveDraft(){
         return;
 
     }
+
+    await logActivity({
+
+    activityType:"WEEKLY_PLAN",
+
+    description:
+
+        `${currentUser.full_name} saved Weekly Plan as Draft`,
+
+    referenceTable:"weekly_plans",
+
+    referenceId:newPlan.id,
+
+    profile:currentUser,
+
+    metadata:{
+
+        week_no:newPlan.week_no,
+
+        year:newPlan.year,
+
+        status:"Draft"
+
+    }
+
+});
 
     planModal.hide();
 
@@ -500,11 +540,21 @@ async function submitPlan(e){
 
     };
 
-    const {error}=await supabase
+   const {
 
-        .from("weekly_plans")
+    data:newPlan,
 
-        .insert(payload);
+    error
+
+}=await supabase
+
+.from("weekly_plans")
+
+.insert(payload)
+
+.select()
+
+.single();
 
     if(error){
 
@@ -513,6 +563,32 @@ async function submitPlan(e){
         return;
 
     }
+
+    await logActivity({
+
+    activityType:"WEEKLY_PLAN",
+
+    description:
+
+        `${currentUser.full_name} submitted Weekly Plan (Week ${newPlan.week_no})`,
+
+    referenceTable:"weekly_plans",
+
+    referenceId:newPlan.id,
+
+    profile:currentUser,
+
+    metadata:{
+
+        week_no:newPlan.week_no,
+
+        year:newPlan.year,
+
+        status:"Submitted"
+
+    }
+
+});
 
     planModal.hide();
 
